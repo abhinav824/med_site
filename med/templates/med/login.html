@@ -1,0 +1,28 @@
+<title>Login</title>
+  <center><h1>Login</h1>
+    {% if request.user.is_authenticated %}
+<h2>{{request.user.username}} is already Logged in </h2>
+<h3><a href={% url 'med:home' %}> <button>Redirect to news feed</button></a>
+  <a href={% url 'med:logout' %}>
+       <button>Logout</button></a>
+   {% else %}
+  <body>
+    {% for message in messages %}
+    <b>{{message}}</b>
+    {% endfor %}
+  <br>
+  <form name="login_form"method='post'>
+  {% csrf_token %}
+  <b>Username</b>   <input type="text"name="username">
+  <br>
+  <br><b>Password</b>  <input type="password" name="password">
+  <br><br>
+  <input type="radio" name="Role" value="retailer" checked> Retailer
+  <input type="radio" name="Role" value="distributor"> Distributor
+  <input type="radio" name="Role" value="supplier"> Supplier
+  <br><br>
+  <input type="submit"name="button"value="login">
+  </form>
+  </body>
+  {% endif %}
+  </center>

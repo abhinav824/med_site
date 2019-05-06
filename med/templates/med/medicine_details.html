@@ -1,0 +1,22 @@
+<title>{{medicine.name}}</title>
+
+<h2>Medicine</h2>
+<a>Hello , {{ request.user.username }} ({{ request.user.profile_user.role }})</a>
+<a href={% url 'med:home' %}><button>Home</button></a>
+  <a href={% url 'med:logout' %}><button>Logout</button></a>
+  <a href={% url 'med:recent_orders_p' %}><button>Orders Placed</button></a>
+  <a href={% url 'med:recent_orders_r' %}><button>Orders Recieved</button></a>
+
+  <br><a>==================================================================================================</a>
+  <br><br>
+  <body>
+    <p1><b>Name : </b>{{ medicine.name}}</p1><br><br>
+    <p2><b>Price : </b>{{ medicine.price}}</p2><br><br>
+    <p3><b>Description : </b>{{ medicine.description}}</p3><br><br>
+    <h3><b><u>Stock</u></b></h3>
+    <p6> Qty = {{stock.quantity}}<br>
+         Demand = {{ stock.demand }}<br>
+         Days to Reorder = {{ d_to_reorder }}
+         </p6><br><br>
+  </body>
+  <a href="{% url 'med:order' medicine.id %}"<button>Order</button></a>

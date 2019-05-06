@@ -1,0 +1,17 @@
+<title>Home</title>
+    <h2>Home</h2>
+<a>Hello , {{ request.user.username }} ({{ request.user.profile_user.role }})</a>
+
+
+  <a href={% url 'med:logout' %}><button>Logout</button></a>
+  <a href={% url 'med:recent_orders_p' %}><button>Orders Placed</button></a>
+  <a href={% url 'med:recent_orders_r' %}><button>Orders Recieved</button></a>
+  <body>
+    <br><p1>==================================================================================================</p1>
+    {% for medicine in medicines %}
+    <ul>
+      <li><b><a href="{% url 'med:medicine' medicine.id %}">{{ medicine.name }}</a></b>
+     </li>
+     </ul>
+     {% endfor %}
+    </body>

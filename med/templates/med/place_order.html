@@ -1,0 +1,28 @@
+<title>Order</title>
+<a>Hello , {{ request.user.username }} ({{ request.user.profile_user.role }})</a>
+<a href={% url 'med:home' %}><button>Home</button></a>
+  <a href={% url 'med:logout' %}><button>Logout</button></a>
+  <a href={% url 'med:recent_orders_p' %}><button>Orders Placed</button></a>
+  <a href={% url 'med:recent_orders_r' %}><button>Orders Recieved</button></a>
+
+  <center><h1>Order Medicine</h1>
+
+  <body>
+    {% for message in messages %}
+    <b>{{message}}</b>
+    {% endfor %}
+  <br>
+   <p1><b>Medicine :</b><t>{{ medicine.name }}</p1><br><br>
+     <p2><b>Seller :</b><t>{{ seller.user.username }}</p2><br><br>
+       <p3><b>Max_quantity available : </b> <t>{{quantity}}</p3><br><br>
+         <form name="order_form"method='post'>
+         {% csrf_token %}
+         <select name="Quantity">
+           {% for q in values%}
+           <option value="{{q}}">{{q}}</option>
+           {% endfor %}
+         </select>
+         <input type="submit"name="button"value="Submit">
+         </form>
+  </body>
+  </center>

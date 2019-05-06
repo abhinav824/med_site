@@ -1,0 +1,23 @@
+<title>Recent Orders</title>
+<a>Hello , {{ request.user.username }} ({{ request.user.profile_user.role }})</a>
+
+<a href={% url 'med:home' %}><button>Home</button></a>
+  <a href={% url 'med:logout' %}><button>Logout</button></a>
+  <a href={% url 'med:recent_orders_p' %}><button>Orders Placed</button></a>
+  <a href={% url 'med:recent_orders_r' %}><button>Orders Recieved</button></a>
+
+<center><h2>Orders Recieved</h2></center>
+<body>
+  {% for message in messages %}
+  <b>{{message}}</b>
+  {% endfor %}
+<br>
+  {% for order in orders %}
+  <p><b>Order id : {{order_id}}</b></p>
+  <p><p1><b>Medicine : </b>{{ order.medicine.name }}</p1><br>
+  <p2><b>Quantity : </b>{{ order.quantity }}</p2><br>
+  <p3><b>Date & Time : </b>{{ order.date_time }}</p3><br>
+  <p4><b>Status : </b>{{order.status}}</p4><br>
+  <p5><b>Retailer : </b>{{ order.placed_by.user.username}}</p5><br><br>
+  {% endfor %}
+  </body>

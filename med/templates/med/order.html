@@ -1,0 +1,31 @@
+<title>Order</title>
+<a>Hello , {{ request.user.username }} ({{ request.user.profile_user.role }})</a>
+<a href={% url 'med:home' %}><button>Home</button></a>
+  <a href={% url 'med:logout' %}><button>Logout</button></a>
+  <a href={% url 'med:recent_orders_p' %}><button>Orders Placed</button></a>
+  <a href={% url 'med:recent_orders_r' %}><button>Orders Recieved</button></a>
+
+  <center><h1>Order Medicine</h1>
+
+  <body>
+    {% for message in messages %}
+    <b>{{message}}</b>
+    {% endfor %}
+  <br>
+  <b><h2>Distributors</h2></b>
+  {% for distributor in distributors %}
+  <ul>
+    <li>{{ distributor.user.username }}<t><button><small><a href="{% url 'med:place_order' med_id=medicine.id s_id=distributor.pk %}">Order Now</small></button></a>
+   </li>
+   </ul>
+   {% endfor %}
+
+  <b><h2>Retailers</h2></b>
+  {% for retailer in retailers %}
+  <ul>
+    <li>{{ retailer.user.username }}<t><button><small><a href="{% url 'med:place_order' med_id=medicine.id s_id=retailer.pk %}">Order Now</small></button></a>
+   </li>
+   </ul>
+   {% endfor %}
+
+  </center>
